@@ -56,7 +56,7 @@ svg[data-testid="icon-verified"] {
             } else {
                 return wingbeat.load_old_icon();
             }
-        },500)
+        }, 500);
     },
     removed_spam_tweet_count: 0,
     remove_spam_tweets: () => {
@@ -73,10 +73,19 @@ svg[data-testid="icon-verified"] {
 		    );
 	    });
     },
+    change_theme_color: (the_color) => {
+        setTimeout((_the_color) => {
+            if(!!document.querySelector("a[href='/home'][aria-label='Twitter'][role='link']")){
+                document.querySelectorAll("meta[name='theme-color']").forEach(e => e.content = the_color);
+            } else {
+                return wingbeat.change_theme_color(the_color);
+            }
+        }, 500, the_color)
+    },
     load_style: (the_color) => {
         let the_style = document.createElement("style");
         the_style.setAttribute("class", "wingbeat");
-        document.querySelectorAll("meta[name='theme-color']").forEach(e => e.content = the_color)
+        wingbeat.change_theme_color(the_color);
         the_style.innerHTML=wingbeat.styling.replace("%color", the_color);
         document.head.append(the_style);
     },
