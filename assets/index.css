@@ -1,0 +1,13 @@
+body {
+  width: 300px;
+  height: 200px;
+  background: #222;
+}
+
+input {
+  accent-color: #fff;
+}
+
+div {
+  color: #fff;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wingbeat</title>
+  <script defer src="assets/index.js"></script>
+  <link rel="stylesheet" href="assets/index.css" />
+</head>
+<body>
+  <div>
+    <input type="checkbox" id="old_logo" checked/>
+    Return old twitter logo
+  </div>
+  <div>
+    <input type="checkbox" id="spam_tweets" checked/>
+    Remove spam tweets
+    <input type="range" min="1" max="12" step="1" value="3" id="spam_tweet_value" />
+  </div>
+  <div>
+    <input type="checkbox" id="custom_color"/>
+    Use custom color
+    <input type="color" id="custom_color_value" value="#2222dd" />
+  </div>
+</body>
+</html>
