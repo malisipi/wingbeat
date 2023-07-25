@@ -5,10 +5,12 @@
 ## Features
 
 * Return Back the Old Twitter Icon
-    ![](./assets/change_logo.png)
+
+    !["Change Logo"](./assets/change_logo.png)
 * Remove Spam Tweets
 * Custom Color Theme Support
-    ![](./assets/color_theme.png)
+
+    !["Color Theme"](./assets/color_theme.png)
 
 # License
 
