@@ -6,17 +6,23 @@ var wingbeat = {
     --my-color: %color;
 }
 
-main {
+main,
+.css-1dbjc4n.r-1awozwy.r-aqfbo4.r-kemksi.r-18u37iz.r-1h3ijdo.r-6gpygo.r-15ysp7h.r-1xcajam.r-ipm5af.r-1hycxz.r-136ojw6 {
     background: color-mix(in srgb, var(--my-color) 20%, black);
 
     & div[data-testid="primaryColumn"] {
+        border: none;
         background: color-mix(in srgb, var(--my-color) 40%, black);
     }
 }
 
 header,
-.r-g2wdr4 {
-    background: color-mix(in srgb, var(--my-color) 30%, black);
+.r-g2wdr4,
+aside[role="complementary"],
+.css-1dbjc4n.r-kemksi.r-1kqtdi0.r-1867qdf.r-1phboty.r-rs99b7.r-1ifxtd0.r-1udh08x,
+.css-1dbjc4n.r-z32n2g.r-42olwf.r-sdzlij.r-1phboty.r-rs99b7.r-eqz5dr.r-16y2uox.r-1wbh5a2.r-1777fci,
+div:is([data-testid*="follow"], [data-testid="confirmationSheetConfirm"])[role="button"][tabindex] {
+    background: color-mix(in srgb, var(--my-color) 30%, black) !important;
 }
 
 a[href="/compose/tweet"][role="link"],
@@ -26,16 +32,34 @@ div[data-testid="Dropdown"] {
     background: color-mix(in srgb, var(--my-color) 70%, black) !important;
 }
 
-div[role="radio"] {
+:is([role="separator"], .css-1dbjc4n.r-1ssbvtb.r-1s2bzr4:has(.css-1dbjc4n.r-eqz5dr.r-1fz3rvf.r-1s2bzr4)),
+div[role="radio"],
+.r-vhj8yc,
+.css-1dbjc4n.r-1bnu78o.r-16y2uox.r-1jgb5lz.r-14gqq1x.r-m5arl1,
+.css-1dbjc4n.r-1bnu78o.r-1p0dtai.r-1d2f490.r-1jgb5lz.r-u8s1d.r-zchlnj.r-ipm5af.r-m5arl1{
     border-color: color-mix(in srgb, var(--my-color) 70%, black) !important;
+    border: 1px solid;
     
-    & div[dir] {
-        color: #dddddd !important;
+    :not(&) {
+        border: none !important;
     }
 }
 
+.css-1dbjc4n.r-1ssbvtb.r-1s2bzr4:has(.css-1dbjc4n.r-eqz5dr.r-1fz3rvf.r-1s2bzr4) {
+    border: 1px solid;
+    border-radius: 20px;
+}
+
+div[role="radio"] div[dir] {
+    color: #dddddd !important;
+}
+
 .r-1cvl2hr {
-    color: color-mix(in srgb, var(--my-color) 70%, black) !important;
+    color: color-mix(in srgb, var(--my-color) 60%, white) !important;
+}
+
+.css-901oao {
+    color: color-mix(in srgb, var(--my-color) 20%, white);
 }
 
 svg {
