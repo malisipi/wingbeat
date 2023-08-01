@@ -82,6 +82,39 @@ svg[data-testid="icon-verified"] {
             }
         }, 500);
     },
+    load_old_branding: {
+        change_title: () => {
+            document.title = document.title.split(" ").map(e => (e == "X") ? "Twitter" : e).join(" ");
+            wingbeat.old_title = document.title;
+        },
+        overwrite: (query, text) => {
+            let object = document.querySelector(query);
+            if (!!object) {
+                object.innerText = text;
+            } else {
+                setTimeout(wingbeat.load_old_branding.overwrite, 100, query, text);
+            };
+        },
+        main: () => {
+            wingbeat.load_old_branding.overwrite(`a[href="/compose/tweet"] * * * * * *`, "Tweet");
+            wingbeat.load_old_branding.overwrite(`div[data-testid="tweetButtonInline"][role="button"] * * *`, "Tweet");
+        },
+        init: () => {
+            (new MutationObserver(() => {
+                if(wingbeat.old_title != document.title) {
+                    wingbeat.load_old_branding.change_title();
+                }
+            })).observe(document.querySelector("head"), {childList: true, subtree: true});
+            
+            wingbeat.old_href = document.location.href;
+            (new MutationObserver(() => {
+                if (wingbeat.old_href != document.location.href) {
+                    wingbeat.old_href = document.location.href;
+                    wingbeat.load_old_branding.main();
+                }
+            })).observe(document.querySelector("body"), {childList: true, subtree: true});
+        }
+    },
     removed_spam_tweet_count: 0,
     remove_spam_tweets: () => {
         	document.addEventListener("scroll", () => {
@@ -115,7 +148,10 @@ svg[data-testid="icon-verified"] {
     },
 	init: async () => {
 		console.info("Wingbeat!");
-		if(await wingbeat.get_config("old_logo")) wingbeat.load_old_icon();
+		if(await wingbeat.get_config("old_branding")){
+            wingbeat.load_old_icon();
+		    wingbeat.load_old_branding.init();
+		}
 		if(await wingbeat.get_config("spam_tweets")) wingbeat.remove_spam_tweets();
 		if(await wingbeat.get_config("custom_color")) wingbeat.load_style(await wingbeat.get_config("custom_color_value"));
 	}
