@@ -94,7 +94,7 @@ svg[data-testid="icon-verified"] {
     },
     load_old_branding: {
         change_title: () => {
-            document.title = document.title.split(" ").map(e => (e == "X") ? "Twitter" : e).join(" ");
+            document.title = document.title.replace("'", " ' ").split(" ").map(e => (e == "X") ? "Twitter" : e).join(" ").replace(" ' ", "'");
             wingbeat.old_title = document.title;
         },
         overwrite: (query, text) => {
