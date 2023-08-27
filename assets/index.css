@@ -1,13 +1,21 @@
 body {
   width: 300px;
   height: 200px;
-  background: #222;
+  background: #ffffff;
 }
 
 input {
-  accent-color: #fff;
+  accent-color: #000000;
 }
 
-div {
-  color: #fff;
+div, a {
+  color: #000000;
+}
+
+div.center {
+  text-align: center;
+}
+
+a {
+  text-decoration: underline;
 }
