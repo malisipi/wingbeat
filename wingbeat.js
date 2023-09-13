@@ -115,12 +115,13 @@ svg[data-testid="icon-verified"] {
                     wingbeat.load_old_branding.change_title();
                 }
             })).observe(document.querySelector("head"), {childList: true, subtree: true});
-            
+
             wingbeat.old_href = document.location.href;
             (new MutationObserver(() => {
                 if (wingbeat.old_href != document.location.href) {
                     wingbeat.old_href = document.location.href;
                     wingbeat.load_old_branding.main();
+                    wingbeat.revert_quotes();
                 }
             })).observe(document.querySelector("body"), {childList: true, subtree: true});
         }
@@ -164,8 +165,28 @@ svg[data-testid="icon-verified"] {
             wingbeat.load_old_icon();
 		    wingbeat.load_old_branding.init();
 		}
+		wingbeat.revert_quotes();
 		if(await wingbeat.get_config("spam_tweets")) wingbeat.remove_spam_tweets();
 		if(await wingbeat.get_config("custom_color")) wingbeat.load_style(await wingbeat.get_config("custom_color_value"));
+	},
+	revert_quotes: async () => {
+		if (await wingbeat.get_config("revert_quotes")) return;
+		console.warn([wingbeat.old_href, wingbeat.old_href.match(/\/[a-zA-Z0-9\_\-\.]+\/status\/[0-9]+/g)?.length, wingbeat.old_href.includes("/retweets/with_comments") || wingbeat.old_href.includes("/quotes")])
+		if (wingbeat.old_href.match(/\/[a-zA-Z0-9\_\-\.]+\/status\/[0-9]+/g)?.length != 1) return;
+		if (wingbeat.old_href.includes("/retweets/with_comments") || wingbeat.old_href.includes("/quotes")) return;
+		if(!!document.querySelector("a[href] > time")?.parentElement?.parentElement?.parentElement){
+			let space = document.createElement("span");
+			space.innerText = " ";
+			let quotes = document.createElement("a");
+			quotes.href = wingbeat.old_href + "/retweets/with_comments";
+			quotes.style.display = "contents";
+			quotes.innerText = "Quotes";
+			let tweet_description_box = document.querySelector("a[href] > time").parentElement.parentElement.parentElement;
+			tweet_description_box.append(space);
+			tweet_description_box.append(quotes);
+		} else {
+			setTimeout(wingbeat.revert_quotes, 500);
+		}
 	}
 };
 
