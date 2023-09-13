@@ -171,7 +171,6 @@ svg[data-testid="icon-verified"] {
 	},
 	revert_quotes: async () => {
 		if (await wingbeat.get_config("revert_quotes")) return;
-		console.warn([wingbeat.old_href, wingbeat.old_href.match(/\/[a-zA-Z0-9\_\-\.]+\/status\/[0-9]+/g)?.length, wingbeat.old_href.includes("/retweets/with_comments") || wingbeat.old_href.includes("/quotes")])
 		if (wingbeat.old_href.match(/\/[a-zA-Z0-9\_\-\.]+\/status\/[0-9]+/g)?.length != 1) return;
 		if (wingbeat.old_href.includes("/retweets/with_comments") || wingbeat.old_href.includes("/quotes")) return;
 		if(!!document.querySelector("a[href] > time")?.parentElement?.parentElement?.parentElement){
