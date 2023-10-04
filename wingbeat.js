@@ -126,6 +126,17 @@ svg[data-testid="icon-verified"] {
             })).observe(document.querySelector("body"), {childList: true, subtree: true});
         }
     },
+    twemojies: {
+	    init: () => {
+	    	document.addEventListener("scroll", wingbeat.twemojies.replace_emojies);
+	    	wingbeat.replace_emojies();
+	    },
+	    replace_emojies: async () => {
+	    	if(document.querySelectorAll("img[src*='/emoji/']").length > 0){
+	    	    document.querySelectorAll("img[src*='/emoji/']").forEach(e=>{e.replaceWith(e.alt)});
+	    	}
+	    }
+   	},
     removed_spam_tweet_count: 0,
     max_hashtag_count: null,
     remove_spam_tweets: async () => {
@@ -168,6 +179,7 @@ svg[data-testid="icon-verified"] {
 		wingbeat.revert_quotes();
 		if(await wingbeat.get_config("spam_tweets")) wingbeat.remove_spam_tweets();
 		if(await wingbeat.get_config("custom_color")) wingbeat.load_style(await wingbeat.get_config("custom_color_value"));
+		if(await wingbeat.get_config("disable_twemojies")) wingbeat.twemojies.init();
 	},
 	revert_quotes: async () => {
 		if (await wingbeat.get_config("revert_quotes")) return;

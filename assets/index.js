@@ -1,4 +1,4 @@
-let settings = ["old_branding", "spam_tweets", "spam_tweet_value", "custom_color", "custom_color_value"];
+let settings = ["old_branding", "spam_tweets", "disable_twemojies", "spam_tweet_value", "custom_color", "custom_color_value"];
 
 settings.forEach(id => {
     document.getElementById(id).addEventListener("input", async e => {
