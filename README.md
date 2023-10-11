@@ -15,7 +15,8 @@
 # License
 
 * Licensed with Apache 2.0 License
-* The Twitter logo was taken from Bootstrap Icons. Bootstrap Icons is licensed by MIT License. The Twitter logo is registered trademark of Twitter.
+* The Twitter logo, House Heart icon and Hash icon was taken from Bootstrap Icons. Bootstrap Icons is licensed by MIT License.
+* The Twitter logo is registered trademark of Twitter.
 
 ## FAQ
 
